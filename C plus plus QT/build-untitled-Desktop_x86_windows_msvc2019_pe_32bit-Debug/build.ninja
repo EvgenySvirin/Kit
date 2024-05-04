@@ -76,6 +76,15 @@ build CMakeFiles\untitled.dir\mainwindow.cpp.obj: CXX_COMPILER__untitled_Debug D
   TARGET_COMPILE_PDB = CMakeFiles\untitled.dir\
   TARGET_PDB = untitled.pdb
 
+build CMakeFiles\untitled.dir\clientmanager.cpp.obj: CXX_COMPILER__untitled_Debug D$:\KIT\Kit\C$ plus$ plus$ QT\untitled\clientmanager.cpp || cmake_object_order_depends_target_untitled
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -I"D:\KIT\Kit\C plus plus QT\build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug" -I"D:\KIT\Kit\C plus plus QT\untitled" -I"D:\KIT\Kit\C plus plus QT\build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug\untitled_autogen\include" -external:I D:\Qt\Qt\5.12.12\msvc2017\include -external:I D:\Qt\Qt\5.12.12\msvc2017\include\QtNetwork -external:I D:\Qt\Qt\5.12.12\msvc2017\include\QtCore -external:I D:\Qt\Qt\5.12.12\msvc2017\.\mkspecs\win32-msvc -external:I D:\Qt\Qt\5.12.12\msvc2017\include\QtWidgets -external:I D:\Qt\Qt\5.12.12\msvc2017\include\QtGui -external:I D:\Qt\Qt\5.12.12\msvc2017\include\QtANGLE -external:W0
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
+  TARGET_COMPILE_PDB = CMakeFiles\untitled.dir\
+  TARGET_PDB = untitled.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target untitled
@@ -84,7 +93,7 @@ build CMakeFiles\untitled.dir\mainwindow.cpp.obj: CXX_COMPILER__untitled_Debug D
 #############################################
 # Link the executable untitled.exe
 
-build untitled.exe: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles\untitled.dir\untitled_autogen\mocs_compilation.cpp.obj CMakeFiles\untitled.dir\main.cpp.obj CMakeFiles\untitled.dir\mainwindow.cpp.obj | D$:\Qt\Qt\5.12.12\msvc2017\lib\Qt5Networkd.lib D$:\Qt\Qt\5.12.12\msvc2017\lib\Qt5Widgetsd.lib D$:\Qt\Qt\5.12.12\msvc2017\lib\Qt5Guid.lib D$:\Qt\Qt\5.12.12\msvc2017\lib\Qt5Cored.lib || untitled_autogen
+build untitled.exe: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles\untitled.dir\untitled_autogen\mocs_compilation.cpp.obj CMakeFiles\untitled.dir\main.cpp.obj CMakeFiles\untitled.dir\mainwindow.cpp.obj CMakeFiles\untitled.dir\clientmanager.cpp.obj | D$:\Qt\Qt\5.12.12\msvc2017\lib\Qt5Networkd.lib D$:\Qt\Qt\5.12.12\msvc2017\lib\Qt5Widgetsd.lib D$:\Qt\Qt\5.12.12\msvc2017\lib\Qt5Guid.lib D$:\Qt\Qt\5.12.12\msvc2017\lib\Qt5Cored.lib || untitled_autogen
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:X86 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = D:\Qt\Qt\5.12.12\msvc2017\lib\Qt5Networkd.lib  D:\Qt\Qt\5.12.12\msvc2017\lib\Qt5Widgetsd.lib  D:\Qt\Qt\5.12.12\msvc2017\lib\Qt5Guid.lib  D:\Qt\Qt\5.12.12\msvc2017\lib\Qt5Cored.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib

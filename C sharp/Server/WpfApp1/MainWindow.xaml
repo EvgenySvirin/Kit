@@ -11,6 +11,14 @@
             <ColumnDefinition Width="200*"/>
             <ColumnDefinition Width="27*"/>
         </Grid.ColumnDefinitions>
+        <TextBlock x:Name="EventsLabel" HorizontalAlignment="Left" Margin="10,32,0,0" TextWrapping="Wrap" Text="Events:" VerticalAlignment="Top" Height="24" Width="53"/>
+        <TextBox x:Name="EventsTextBox" HorizontalAlignment="Left" Margin="63,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="289" Height="168"/>
+        <TextBox x:Name="ChatTextBox" HorizontalAlignment="Left" Margin="63,259,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="289" Height="149"/>
+        <TextBlock x:Name="ChatTextBlock" HorizontalAlignment="Left" Margin="10,259,0,0" TextWrapping="Wrap" Text="Chat:" VerticalAlignment="Top"/>
+        <TextBlock x:Name="PortTextBlock" HorizontalAlignment="Left" Margin="374,32,0,0" TextWrapping="Wrap" Text="Port:" VerticalAlignment="Top" Height="24" Width="55"/>
+        <TextBox x:Name="PortTextBox" HorizontalAlignment="Left" Margin="450,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="96" Height="24"/>
+        <Button x:Name="StartServerButton" Content="Start Server" HorizontalAlignment="Left" Margin="573,32,0,0" VerticalAlignment="Top" Height="24" Width="100" Click="StartServerButton_Click"/>
+        <Button x:Name="StopServerButton" Content="Stop server" HorizontalAlignment="Left" Margin="573,61,0,0" VerticalAlignment="Top" Width="100" Height="24" Click="StopServerButton_Click"/>
 
     </Grid>
 </Window>

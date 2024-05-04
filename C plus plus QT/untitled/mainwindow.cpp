@@ -14,3 +14,27 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::setClientManager(ClientManager* clientManager) {
+    this->clientManager = clientManager;
+}
+
+
+void MainWindow::on_pushButton_clicked()
+{
+    auto ip = ui->textIP->text();
+    auto port = ui->textPort->text();
+    clientManager->connect(ip, port.toInt());
+}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    clientManager->diconnect();
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    auto text = ui->messageText->toPlainText().toStdString();
+    clientManager->send(QByteArray(text.c_str(), text.length()));
+}
+

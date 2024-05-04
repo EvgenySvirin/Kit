@@ -74,6 +74,12 @@
 	"HEADERS" : 
 	[
 		[
+			"D:/KIT/Kit/C plus plus QT/untitled/clientmanager.h",
+			"MU",
+			"EWIEGA46WW/moc_clientmanager.cpp",
+			null
+		],
+		[
 			"D:/KIT/Kit/C plus plus QT/untitled/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
@@ -127,6 +133,7 @@
 	"SETTINGS_FILE" : "D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/CMakeFiles/untitled_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "D:/KIT/Kit/C plus plus QT/untitled/clientmanager.cpp", "MU", null ],
 		[ "D:/KIT/Kit/C plus plus QT/untitled/main.cpp", "MU", null ],
 		[ "D:/KIT/Kit/C plus plus QT/untitled/mainwindow.cpp", "MU", null ]
 	],
