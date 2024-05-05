@@ -45,7 +45,7 @@ void ClientManager::disconnect() {
 
 void ClientManager::disconnected() {
     if (MainWindow::isDebug) {
-         qDebug() << "Disconnected slot is called";
+         qDebug() << "Disconnected slot called";
     }
     if (!isConnected) {
         return;
