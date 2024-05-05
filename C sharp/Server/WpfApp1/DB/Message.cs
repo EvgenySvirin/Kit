@@ -19,7 +19,7 @@ namespace SQLiteApp
         public DbSet<Message> messages { get; set; } = null!;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=helloapp.db");
+            optionsBuilder.UseSqlite("Data Source=messages.db");
         }
     }
 }

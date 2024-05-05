@@ -79,6 +79,7 @@ namespace WpfApp1
                 db.messages.Load();
                 // и устанавливаем данные в качестве контекста
                 DataContext = db.messages.Local.ToObservableCollection();
+                
                 foreach (var entity in db.ChangeTracker.Entries().ToList()) {
                     entity.Reload();
                 }
@@ -118,10 +119,11 @@ namespace WpfApp1
             }
             public void dumpMessages(int n) {
                 var someMessages = DataContext.Take(n).ToArray();
-                n = Math.Min(n, someMessages.Length);
-                while (0 < n)
+                n = Math.Min(n - 1, someMessages.Length - 1);
+                while (0 <= n)
                 {
                     mainWindow.DumpTextBox.AppendText(someMessages[n].Text);
+                    --n;
                 }
             }
             public void startServer(int port)
