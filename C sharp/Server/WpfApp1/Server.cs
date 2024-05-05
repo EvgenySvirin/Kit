@@ -8,6 +8,7 @@ using System.Diagnostics;
 using static WpfApp1.MainWindow;
 using System.Threading.Tasks;
 using System.Diagnostics.Eventing.Reader;
+using System.Linq.Expressions;
 
 class Server
 {
@@ -17,13 +18,18 @@ class Server
     private string ip;
     private int port;
     private TcpClient? connectedClient = null;
+    private ProgramManager programManager = null;
 
     ConcurrentQueue<Tuple<Event, string>> serverEvents;
-    public Server(string ip, int port, ConcurrentQueue<Tuple<Event, string>> serverEvents) {
-        isServing = true;
+    public Server(ProgramManager programManager,
+                ConcurrentQueue<Tuple<Event, string>> serverEvents,
+                string ip, int port) {
+        this.programManager = programManager;
+        this.serverEvents = serverEvents;
         this.ip = ip;
         this.port = port;
-        this.serverEvents = serverEvents;
+
+        isServing = false;
         canRestart = true;
     }
 
@@ -58,9 +64,7 @@ class Server
             addServerEvent("Waiting for a connection...\n");
             while (isServing)
             {
-
                 TcpClient? client = null;
-                bool clientIsFound = false;
                 var task = Task.Factory.StartNew(
                     () =>
                     {
@@ -70,39 +74,52 @@ class Server
                         }
                         catch (SocketException e)
                         {
-                            tcpListener.Stop();
-                            tcpListener.Start();
-                            Trace.WriteLine("SocketException: {0}", e.ToString());
+                            try
+                            {
+                                tcpListener.Stop();
+                                tcpListener.Start();
+                            }
+                            catch (SocketException eListener) {
+                                Trace.WriteLine("SocketException: {0}", eListener.ToString());
+                            }
+                            //Trace.WriteLine("SocketException: {0}", e.ToString());
                         }
                     });
 
-                if (!task.Wait(5000))
-                {
+                bool isSuccessful = false;
+                try {
+                    isSuccessful = task.Wait(2000);
+                } catch (SocketException e) {
                     tcpListener.Stop();
                     tcpListener.Start();
                     Thread.Sleep(300);
                     continue;
                 }
-                else
-                {
-                    clientIsFound = true;
+
+                if (!isSuccessful) {
+                    tcpListener.Stop();
+                    tcpListener.Start();
+                    Thread.Sleep(300);
+                    continue;
                 }
-                addServerEvent("Connected\n");
+
                 if (client != null)
                 {
+                    addServerEvent("Connected\n");
                     connectedClient = client;
                     Thread t = new Thread(new ParameterizedThreadStart(HandleDeivce));
                     t.Start(parameter: client);
+                    programManager.toggleClientStatus(true);              
                 }
-
             }
         }
         catch (SocketException e)
         {
-            Trace.WriteLine("SocketException: {0}", e.ToString());
+            //Trace.WriteLine("SocketException: {0}", e.ToString());
         }
         finally
-        { 
+        {
+            sendClose(connectedClient);
             if (isDebug)
             {
                 Trace.WriteLine("Server loop ended\n");
@@ -112,6 +129,7 @@ class Server
             connectedClient = null;
             isServing = false;
             canRestart = true;
+            programManager.toggleClientStatus(false);
         }
     }
 
@@ -128,13 +146,41 @@ class Server
         {
             while (isServing && (i = stream.Read(bytes, 0, bytes.Length)) != 0)
             {
-                addChatEvent(Encoding.ASCII.GetString(bytes, 0, i));
+                addChatEvent(Encoding.Default.GetString(bytes, 0, i));
             }
         }
         catch (Exception e)
         {
-            Trace.WriteLine("Exception: {0}", e.ToString());
-            client.Close();
+            //Trace.WriteLine("Exception: {0}", e.ToString());
         }
+        finally
+        {
+            sendClose(client);
+            client.Close();
+            addServerEvent("Client disconnected\n");
+            programManager.toggleClientStatus(false);
+        }
+    }
+
+    public void sendClose(TcpClient client) {
+        if (client != null && client.Connected)
+        {
+            if (isDebug)
+            {
+                Trace.WriteLine("CLOSE SENT \n");
+            }
+
+            client.GetStream().Write(Encoding.Default.GetBytes("CLOSE"));
+        }
+    } 
+
+    public bool sendMessage(string message)
+    {
+        if (connectedClient == null || !isServing) {
+            return false;
+        }
+        connectedClient.GetStream().Write(Encoding.Default.GetBytes(message));
+        addChatEvent(message);
+        return true;
     }
 }

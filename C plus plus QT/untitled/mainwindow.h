@@ -21,9 +21,15 @@ public:
 
     void setClientManager(ClientManager* clientManager);
 
+    void writeEvent(const QString& eventMessage);
+
+    void toggleConnectionStatus(const bool& isConnected);
+
+    static bool isDebug;
+
+    void writeToChat(std::string message);
+
 private slots:
-
-
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
@@ -33,6 +39,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     ClientManager* clientManager = nullptr;
+
 
 };
 #endif // MAINWINDOW_H

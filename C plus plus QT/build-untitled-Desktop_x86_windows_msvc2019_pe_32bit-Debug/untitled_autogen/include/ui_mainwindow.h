@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
@@ -31,14 +32,15 @@ public:
     QLineEdit *textPort;
     QLabel *label;
     QLabel *label_2;
-    QTextEdit *textEdit;
+    QTextEdit *textEvents;
     QLabel *label_3;
     QLabel *label_4;
     QPushButton *pushButton_2;
     QLabel *label_5;
     QTextEdit *messageText;
     QPushButton *pushButton_3;
-    QTextEdit *textEdit_4;
+    QTextEdit *textChat;
+    QCheckBox *checkBox;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -64,9 +66,9 @@ public:
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setGeometry(QRect(770, 20, 55, 16));
-        textEdit = new QTextEdit(centralwidget);
-        textEdit->setObjectName(QString::fromUtf8("textEdit"));
-        textEdit->setGeometry(QRect(180, 90, 361, 151));
+        textEvents = new QTextEdit(centralwidget);
+        textEvents->setObjectName(QString::fromUtf8("textEvents"));
+        textEvents->setGeometry(QRect(180, 90, 361, 151));
         label_3 = new QLabel(centralwidget);
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setGeometry(QRect(110, 90, 55, 16));
@@ -84,10 +86,13 @@ public:
         messageText->setGeometry(QRect(670, 310, 251, 151));
         pushButton_3 = new QPushButton(centralwidget);
         pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        pushButton_3->setGeometry(QRect(930, 310, 93, 28));
-        textEdit_4 = new QTextEdit(centralwidget);
-        textEdit_4->setObjectName(QString::fromUtf8("textEdit_4"));
-        textEdit_4->setGeometry(QRect(180, 310, 361, 151));
+        pushButton_3->setGeometry(QRect(930, 430, 93, 28));
+        textChat = new QTextEdit(centralwidget);
+        textChat->setObjectName(QString::fromUtf8("textChat"));
+        textChat->setGeometry(QRect(180, 310, 361, 151));
+        checkBox = new QCheckBox(centralwidget);
+        checkBox->setObjectName(QString::fromUtf8("checkBox"));
+        checkBox->setGeometry(QRect(680, 100, 141, 20));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -115,6 +120,7 @@ public:
         pushButton_2->setText(QApplication::translate("MainWindow", "Disconnect", nullptr));
         label_5->setText(QApplication::translate("MainWindow", "Message:", nullptr));
         pushButton_3->setText(QApplication::translate("MainWindow", "Send", nullptr));
+        checkBox->setText(QApplication::translate("MainWindow", "Connected to server", nullptr));
     } // retranslateUi
 
 };

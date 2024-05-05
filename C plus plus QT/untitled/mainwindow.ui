@@ -79,7 +79,7 @@
      <string>Port:</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit">
+   <widget class="QTextEdit" name="textEvents">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -155,7 +155,7 @@
     <property name="geometry">
      <rect>
       <x>930</x>
-      <y>310</y>
+      <y>430</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -164,7 +164,7 @@
      <string>Send</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit_4">
+   <widget class="QTextEdit" name="textChat">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -172,6 +172,19 @@
       <width>361</width>
       <height>151</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>100</y>
+      <width>141</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Connected to server</string>
     </property>
    </widget>
   </widget>

@@ -19,6 +19,10 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Collections.Concurrent;
+using SQLiteApp;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.ObjectModel;
+using System.Collections.Immutable;
 
 namespace WpfApp1
 {
@@ -33,8 +37,9 @@ namespace WpfApp1
         {
             InitializeComponent();
             programManager = new ProgramManager(this);
-            //programManager.asyncStartServer(9052);
-            programManager.asyncManageQueue();
+            programManager.loadDB();
+            programManager.startManageQueue();
+                
             if (isDebug) {
                 Trace.WriteLine("MainWindow() ended");
             }
@@ -49,20 +54,36 @@ namespace WpfApp1
             private MainWindow mainWindow;
             private Server server;
             public ConcurrentQueue<Tuple<Event, string>> serverEvents;
+
+            private ApplicationContext db;
+            private ObservableCollection<Message> DataContext;
             public ProgramManager(MainWindow mainWindow)
             {
                 this.mainWindow = mainWindow;
                 serverEvents = new ConcurrentQueue<Tuple<Event, string>>();
-                server = new Server("127.0.0.1", -1, serverEvents);
+                server = new Server(this, serverEvents, "127.0.0.1", -1);
             }
 
-            public void asyncManageQueue()
+            public void startManageQueue()
             {
                 var t = new Thread(manageQueue);
                 t.Start();
             }
 
-            public void logServerEvent(string text)
+            public void loadDB()
+            {
+                db = new ApplicationContext();
+                // гарантируем, что база данных создана
+                db.Database.EnsureCreated();
+                // загружаем данные из БД
+                db.messages.Load();
+                // и устанавливаем данные в качестве контекста
+                DataContext = db.messages.Local.ToObservableCollection();
+                foreach (var entity in db.ChangeTracker.Entries().ToList()) {
+                    entity.Reload();
+                }
+            }
+            public void addServerEvent(string text)
             {
                 serverEvents.Enqueue(new Tuple<Event, string>(Event.ServerEvent, text));
             }
@@ -73,8 +94,7 @@ namespace WpfApp1
                     Tuple<Event, string> message;
                     while (!serverEvents.IsEmpty)
                     {
-                        bool isSuccessful = serverEvents.TryDequeue(out message);
-                        if (!isSuccessful)
+                        if (!serverEvents.TryDequeue(out message))
                         {
                             continue;
                         }
@@ -88,15 +108,23 @@ namespace WpfApp1
                             case Event.ChatEvent:
                                 Application.Current.Dispatcher.Invoke(new Action(()
                                     => { mainWindow.ChatTextBox.AppendText(message.Item2); }));
+                                db.Add(new Message { Text = message.Item2 });
+                                db.SaveChanges();
                                 break;
                         }
                     }
                     Thread.Sleep(200);
                 }
             }
-
-
-            public void asyncStartServer(int port)
+            public void dumpMessages(int n) {
+                var someMessages = DataContext.Take(n).ToArray();
+                n = Math.Min(n, someMessages.Length);
+                while (0 < n)
+                {
+                    mainWindow.DumpTextBox.AppendText(someMessages[n].Text);
+                }
+            }
+            public void startServer(int port)
             {
                 server.setPort(port);
                 var t = new Thread(server.StartListener);
@@ -122,13 +150,20 @@ namespace WpfApp1
                     }
                     Thread.Sleep(1000);
                 }
-                asyncStartServer(port);
+                startServer(port);
             }
-        }
 
-        void logServerEvent(string text)
-        {
-            programManager.logServerEvent(text);
+            public void toggleClientStatus(bool clientStatus)
+            {
+                Application.Current.Dispatcher.Invoke(new Action(()=> { mainWindow.ClientStatusCheckBox.IsChecked = clientStatus; }));
+            }
+
+            public bool sendMessage(string message)
+            {
+                message = "Server:" + message + "\n";
+                return server.sendMessage(message);
+
+            }
         }
 
         private void StartServerButton_Click(object sender, RoutedEventArgs e)
@@ -146,13 +181,23 @@ namespace WpfApp1
                     Trace.WriteLine("Finish restarting server\n");
                 }
             } else {
-            programManager.logServerEvent("Wrong port text\n");
+            programManager.addServerEvent("Wrong port text\n");
             }
         }
 
         private void StopServerButton_Click(object sender, RoutedEventArgs e)
         {
             programManager.stopServer();
+        }
+
+        private void SendMessageButton_Click(object sender, RoutedEventArgs e)
+        {
+            programManager.sendMessage(MessageTextBox.Text);
+        }
+
+        private void DumpButton_Click(object sender, RoutedEventArgs e)
+        {
+            programManager.dumpMessages(5);
         }
     }
 }
