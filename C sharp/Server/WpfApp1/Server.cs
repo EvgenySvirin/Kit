@@ -7,8 +7,6 @@ using System.Threading;
 using System.Diagnostics;
 using static WpfApp1.MainWindow;
 using System.Threading.Tasks;
-using System.Diagnostics.Eventing.Reader;
-using System.Linq.Expressions;
 
 class Server
 {
@@ -17,17 +15,19 @@ class Server
     private bool canRestart = false;
     private string ip;
     private int port;
+    private int messageSizeLimit;
     private TcpClient? connectedClient = null;
-    private ProgramManager programManager = null;
+    private ProgramManager? programManager = null;
 
     ConcurrentQueue<Tuple<Event, string>> serverEvents;
     public Server(ProgramManager programManager,
                 ConcurrentQueue<Tuple<Event, string>> serverEvents,
-                string ip, int port) {
+                string ip, int port, int messageSizeLimit) {
         this.programManager = programManager;
         this.serverEvents = serverEvents;
         this.ip = ip;
         this.port = port;
+        this.messageSizeLimit = messageSizeLimit;
 
         isServing = false;
         canRestart = true;
@@ -86,21 +86,11 @@ class Server
                         }
                     });
 
-                bool isSuccessful = false;
-                try {
-                    isSuccessful = task.Wait(2000);
-                } catch (SocketException e) {
+                if (!task.Wait(2000)) {
                     tcpListener.Stop();
-                    Thread.Sleep(300);
                     continue;
                 }
-
-                if (!isSuccessful) {
-                    tcpListener.Stop();
-                    Thread.Sleep(300);
-                    continue;
-                }
-
+   
                 if (client != null)
                 {
                     addServerEvent("Connected\n");
@@ -114,7 +104,7 @@ class Server
         }
         catch (SocketException e)
         {
-            //Trace.WriteLine("SocketException: {0}", e.ToString());
+            Trace.WriteLine("SocketException: {0}", e.ToString());
         }
         finally
         {
@@ -139,7 +129,7 @@ class Server
         }
         TcpClient client = (TcpClient)obj;
         var stream = client.GetStream();
-        Byte[] bytes = new Byte[200];
+        Byte[] bytes = new Byte[messageSizeLimit];
         int i;
         try
         {
@@ -150,7 +140,7 @@ class Server
         }
         catch (Exception e)
         {
-            //Trace.WriteLine("Exception: {0}", e.ToString());
+            Trace.WriteLine("Exception: {0}", e.ToString());
         }
         finally
         {
@@ -166,7 +156,7 @@ class Server
         {
             if (isDebug)
             {
-                Trace.WriteLine("CLOSE SENT \n");
+                Trace.WriteLine("CLOSE SENT\n");
             }
 
             client.GetStream().Write(Encoding.ASCII.GetBytes("CLOSE"));
@@ -175,12 +165,12 @@ class Server
 
     public bool sendMessage(string message)
     {
-        if (connectedClient == null || !isServing) {
+        if (connectedClient == null || !isServing || !connectedClient.Connected) {
             addServerEvent("No connection\n");
             return false;
         }
         if (200 < message.Length) {
-            addServerEvent("Message is too large, more than 200 symbols");
+            addServerEvent("Message is too large");
             return false;
         }
         connectedClient.GetStream().Write(Encoding.ASCII.GetBytes(message));

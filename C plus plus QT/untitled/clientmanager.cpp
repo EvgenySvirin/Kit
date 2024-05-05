@@ -1,8 +1,8 @@
 #include "clientmanager.h"
 #include "mainwindow.h"
+
 #include <QDebug>
-#include <thread>
-#include <QTimer>
+
 
 class MainWindow;
 ClientManager::ClientManager(MainWindow* mainWindow) {

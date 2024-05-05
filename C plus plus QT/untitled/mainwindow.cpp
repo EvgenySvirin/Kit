@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+
 #include <iostream>
+
 #include <QHostAddress>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -54,7 +56,7 @@ void MainWindow::toggleConnectionStatus(const bool& isConnected) {
     ui->checkBox->setChecked(isConnected);
 }
 
-void MainWindow::writeToChat(std::string message) {
+void MainWindow::writeToChat(const std::string& message) {
     ui->textChat->append(QString::fromStdString(message));
 }
 

@@ -1,29 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net.Sockets;
-using System.Net;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Diagnostics;
-using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Collections.Concurrent;
 using SQLiteApp;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
-using System.Collections.Immutable;
-using System.Text.RegularExpressions;
+
 
 namespace WpfApp1
 {
@@ -44,8 +28,6 @@ namespace WpfApp1
             programManager = new ProgramManager(this);
             programManager.loadDB();
             programManager.startManageQueue();
-
-            
                 
             if (isDebug) {
                 Trace.WriteLine("MainWindow() ended");
@@ -68,7 +50,7 @@ namespace WpfApp1
             {
                 this.mainWindow = mainWindow;
                 serverEvents = new ConcurrentQueue<Tuple<Event, string>>();
-                server = new Server(this, serverEvents, "127.0.0.1", -1);
+                server = new Server(this, serverEvents, "127.0.0.1", -1, 200);
             }
 
             public void startManageQueue()
@@ -165,7 +147,8 @@ namespace WpfApp1
 
             public void toggleClientStatus(bool clientStatus)
             {
-                Application.Current.Dispatcher.Invoke(new Action(()=> { mainWindow.ClientStatusCheckBox.IsChecked = clientStatus; }));
+                Application.Current.Dispatcher.Invoke(
+                    new Action(()=> { mainWindow.ClientStatusCheckBox.IsChecked = clientStatus; }));
             }
 
             public bool sendMessage(string message)
@@ -191,7 +174,7 @@ namespace WpfApp1
                     Trace.WriteLine("Finish restarting server\n");
                 }
             } else {
-            programManager.addServerEvent("Wrong port text\n");
+                programManager.addServerEvent("Wrong port text\n");
             }
         }
 

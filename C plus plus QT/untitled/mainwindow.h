@@ -16,6 +16,8 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    static bool isDebug;
+
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
@@ -25,9 +27,7 @@ public:
 
     void toggleConnectionStatus(const bool& isConnected);
 
-    static bool isDebug;
-
-    void writeToChat(std::string message);
+    void writeToChat(const std::string& message);
 
 private slots:
     void on_pushButton_clicked();

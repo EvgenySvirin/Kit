@@ -1,13 +1,12 @@
-
 #include "clientmanager.h"
 #include "mainwindow.h"
-#include <iostream>
-#include <QThread>
 
+#include <iostream>
+
+#include <QThread>
 #include <QApplication>
 
 bool MainWindow::isDebug = true;
-
 
 int main(int argc, char *argv[])
 {

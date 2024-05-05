@@ -9,12 +9,12 @@ WpfApp1
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-D:\KIT\Kit\C sharp\Server\WpfApp1\App.xaml
-11407045341
+
+2-1094938431
 
 6-1481484989
 212-1839353600
-MainWindow.xaml;
+App.xaml;MainWindow.xaml;
 
-True
+False
 
