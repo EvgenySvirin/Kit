@@ -8,36 +8,33 @@ class MainWindow;
 ClientManager::ClientManager(MainWindow* mainWindow) {
    this->mainWindow = mainWindow;
    isConnected = false;
-   socket = nullptr;
-   recieverThread = new std::thread (&ClientManager::startRecieving, this);
-   recieverThread->detach();
+   socket = new QTcpSocket();
+   timer = new QTimer();
+   QObject::connect(timer, SIGNAL(timeout()), this, SLOT(checkIfConnected()));
+}
+
+void ClientManager::startManaging() {
+    recieverThread = new std::thread (&ClientManager::startRecieving, this);
+    recieverThread->detach();
 }
 
 void ClientManager::connect(const QString& ip, const int port) {
     if (socket) {
         disconnected();
     }
-    socket = new QTcpSocket();
-
     QObject::connect(socket, SIGNAL(disconnected()), this, SLOT(disconnected()));
     QObject::connect(socket, SIGNAL(connected()), this, SLOT(connected()));
     QObject::connect(socket, SIGNAL(error(QAbstractSocket::SocketError)), this,
                      SLOT(errorSocket(QAbstractSocket::SocketError)));
     socket->connectToHost(ip, port);
-    timer = new QTimer();
-    QObject::connect(timer, SIGNAL(timeout()), this, SLOT(checkIfConnected()));
     timer->start(1000);
 }
 
 void ClientManager::checkIfConnected() {
     timer->stop();
-    delete timer;
-    timer = nullptr;
     if (!isConnected) {
         if (socket) {
             socket->close();
-            delete socket;
-            socket = nullptr;
             writeEvent("No connection\n");
         }
     }
@@ -54,13 +51,8 @@ void ClientManager::disconnected() {
         return;
     }
     isConnected = false;
-    if (socket) {
-        socket->close();
-        delete socket;
-        socket = nullptr;
-        writeEvent("Disconnected\n");
-    }
-    isConnected = false;
+    socket->close();
+    writeEvent("Disconnected\n");
     mainWindow->toggleConnectionStatus(false);
 }
 
@@ -102,8 +94,12 @@ bool ClientManager::send(const QByteArray& data) {
         if (MainWindow::isDebug) {
             qDebug() << "Entering send\n";
         }
-        if (200 < data.size()) {
-            writeEvent("Message is too large, more than 200 symbols\n");
+        if (!isConnected) {
+            writeEvent("No connection\n");
+            return false;
+        }
+        if (messageSizeLimit < data.size()) {
+            writeEvent("Message is too large\n");
             return false;
         }
         socket->write(data);
@@ -122,9 +118,9 @@ void ClientManager::writeEvent(const QString &eventMessage) const {
 }
 
 ClientManager::~ClientManager() {
-    qDebug() << "called dest";
     programIsEnded = true;
     if (timer) {
+        timer->stop();
         delete timer;
         timer = nullptr;
     }
@@ -132,5 +128,8 @@ ClientManager::~ClientManager() {
         socket->close();
         delete socket;
         socket = nullptr;
+    }
+    if (recieverThread) {
+        delete recieverThread;
     }
 }

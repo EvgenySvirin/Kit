@@ -1,105 +1,40 @@
 # ninja log v5
 1	304	7365243081802664	build.ninja	7954fb31bcfcbdc1
-11	56	0	CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-11	56	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-11	56	0	untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-11	56	0	untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-11	56	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-139	1706	7366155768938557	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	c3ec58264f8b3c76
-11	56	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-301	3902	7365438230821280	CMakeFiles/untitled.dir/main.cpp.obj	41ba62198ac94c9
-97	1972	7366131625556489	CMakeFiles/untitled.dir/mainwindow.cpp.obj	c8fb6fb42e60f051
-1415	1877	7366162963523528	untitled.exe	3ea3bec6b7101c3f
-56	1415	7366162959402522	CMakeFiles/untitled.dir/clientmanager.cpp.obj	433c0432160880bd
-0	38	0	CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-0	38	0	untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-0	38	0	untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-0	38	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-0	38	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-0	38	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-1	47	0	CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-1	47	0	untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-1	47	0	untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-1	47	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-1	47	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-1	47	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-47	1550	7366166309062630	CMakeFiles/untitled.dir/clientmanager.cpp.obj	433c0432160880bd
-1551	1986	7366166312636986	untitled.exe	3ea3bec6b7101c3f
-1	60	0	CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-1	60	0	untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-1	60	0	untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-1	60	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-1	60	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-1	60	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-61	1382	7366167454287512	CMakeFiles/untitled.dir/clientmanager.cpp.obj	433c0432160880bd
-1383	1871	7366167458253719	untitled.exe	3ea3bec6b7101c3f
-0	38	0	CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-0	38	0	untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-0	38	0	untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-0	38	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-0	38	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-0	38	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-1	46	0	CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-1	46	0	untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-1	46	0	untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-1	46	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-1	46	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-1	46	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-46	1360	7366168301448050	CMakeFiles/untitled.dir/clientmanager.cpp.obj	433c0432160880bd
-1361	1756	7366168304819465	untitled.exe	3ea3bec6b7101c3f
-1	45	0	CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-1	45	0	untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-1	45	0	untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-1	45	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-1	45	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-1	45	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-46	1508	7366169530670565	CMakeFiles/untitled.dir/clientmanager.cpp.obj	433c0432160880bd
-1509	1886	7366169533517106	untitled.exe	3ea3bec6b7101c3f
-1	44	0	CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-1	44	0	untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-1	44	0	untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-1	44	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-1	44	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-1	44	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-1	46	0	CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-1	46	0	untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-1	46	0	untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-1	46	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-1	46	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-1	46	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-47	1370	7366170702419355	CMakeFiles/untitled.dir/clientmanager.cpp.obj	433c0432160880bd
-1371	1799	7366170706030454	untitled.exe	3ea3bec6b7101c3f
-1	46	0	CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-1	46	0	untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-1	46	0	untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-1	46	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-1	46	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-1	46	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-46	1475	7366171253624918	CMakeFiles/untitled.dir/clientmanager.cpp.obj	433c0432160880bd
-1476	1830	7366171256467314	untitled.exe	3ea3bec6b7101c3f
-1	226	0	CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-1	226	0	untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-1	226	0	untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-1	226	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-1	226	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-1	226	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-226	2085	7366174164320476	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	c3ec58264f8b3c76
-235	2109	7366174164544791	CMakeFiles/untitled.dir/clientmanager.cpp.obj	433c0432160880bd
-231	2374	7366174167113904	CMakeFiles/untitled.dir/main.cpp.obj	41ba62198ac94c9
-2375	2851	7366174171398489	untitled.exe	3ea3bec6b7101c3f
-1	145	0	CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-1	145	0	untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-1	145	0	untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-1	145	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-1	145	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-1	145	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-145	1878	7366177504779360	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	c3ec58264f8b3c76
-149	1893	7366177505011554	CMakeFiles/untitled.dir/clientmanager.cpp.obj	433c0432160880bd
+1	38	0	CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
+1	38	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
+1	38	0	untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
+1	38	0	untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
+1	38	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
+155	1346	7366248367109992	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	c3ec58264f8b3c76
+1	38	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
 155	1950	7366177505589336	CMakeFiles/untitled.dir/main.cpp.obj	41ba62198ac94c9
-1950	2573	7366177510835920	untitled.exe	3ea3bec6b7101c3f
-1	70	0	CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-1	70	0	untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-1	70	0	untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
-1	70	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
-1	70	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
-1	70	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
+40	1402	7366243223257842	CMakeFiles/untitled.dir/mainwindow.cpp.obj	c8fb6fb42e60f051
+1411	1824	7366250898229889	untitled.exe	3ea3bec6b7101c3f
+39	1411	7366250894721926	CMakeFiles/untitled.dir/clientmanager.cpp.obj	433c0432160880bd
+1	51	0	CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
+1	51	0	untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
+1	51	0	untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
+1	51	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
+1	51	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
+1	51	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
+51	1461	7366252271268508	CMakeFiles/untitled.dir/clientmanager.cpp.obj	433c0432160880bd
+1462	1895	7366252274869265	untitled.exe	3ea3bec6b7101c3f
+1	165	0	CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
+1	165	0	untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
+1	165	0	untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
+1	165	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
+1	165	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
+1	165	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
+165	2117	7366253469023338	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	c3ec58264f8b3c76
+169	2127	7366253469179552	CMakeFiles/untitled.dir/clientmanager.cpp.obj	433c0432160880bd
+181	2150	7366253469443315	CMakeFiles/untitled.dir/mainwindow.cpp.obj	c8fb6fb42e60f051
+174	2300	7366253471061983	CMakeFiles/untitled.dir/main.cpp.obj	41ba62198ac94c9
+2300	2673	7366253473961495	untitled.exe	3ea3bec6b7101c3f
+0	46	0	CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
+0	46	0	untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
+0	46	0	untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
+0	46	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/CMakeFiles/untitled_autogen	b9b088efa4e9a0cf
+0	46	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/mocs_compilation.cpp	b9b088efa4e9a0cf
+0	46	0	D:/KIT/Kit/C plus plus QT/build-untitled-Desktop_x86_windows_msvc2019_pe_32bit-Debug/untitled_autogen/include/ui_mainwindow.h	b9b088efa4e9a0cf
+46	1608	7366253946737537	CMakeFiles/untitled.dir/main.cpp.obj	41ba62198ac94c9
+1608	1911	7366253949182175	untitled.exe	3ea3bec6b7101c3f

@@ -3,8 +3,8 @@
 #include <iostream>
 #include <QTcpSocket>
 #include <QAtomicInteger>
-#include <mutex>
 #include <QTimer>
+#include <thread>
 
 class MainWindow;
 
@@ -19,7 +19,9 @@ public:
     void disconnect();
     bool send(const QByteArray& data);
     void writeEvent(const QString& eventMessage) const;
+    void startManaging();
     void startRecieving();
+
 signals:
 
 public slots:
@@ -28,6 +30,7 @@ public slots:
     void errorSocket(QAbstractSocket::SocketError error);
     void checkIfConnected();
 private:
+     const int messageSizeLimit = 200;
      QAtomicInt::QAtomicInteger programIsEnded = false;
      QAtomicInt::QAtomicInteger isConnected = false;
      QTcpSocket* socket = nullptr;

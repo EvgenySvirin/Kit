@@ -40,6 +40,5 @@ private:
     Ui::MainWindow *ui;
     ClientManager* clientManager = nullptr;
 
-
 };
 #endif // MAINWINDOW_H
