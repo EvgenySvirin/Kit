@@ -69,8 +69,7 @@ void ClientManager::errorSocket(QAbstractSocket::SocketError error) {
 void ClientManager::startRecieving() {
     const std::string CLOSE = "CLOSE";
     while (!programIsEnded) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(200));
-        if (isConnected && socket) {
+        if (isConnected && socket && socket->isReadable()) {
             auto bytes = socket->read(200);
             if (bytes.length() != 0) {
                 auto message = bytes.toStdString();
@@ -86,6 +85,7 @@ void ClientManager::startRecieving() {
                 }
             }
         }
+        std::this_thread::sleep_for(std::chrono::milliseconds(200));
     }
 }
 
