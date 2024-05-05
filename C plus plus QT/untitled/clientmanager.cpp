@@ -58,17 +58,18 @@ void ClientManager::errorSocket(QAbstractSocket::SocketError error) {
 
 void ClientManager::startRecieving() {
     while (true) {
+        std::string CLOSE = "CLOSE";
         if (isConnected && socket) {
-            auto bytes = socket->readAll();
-
+            auto bytes = socket->read(200);
             if (bytes.length() != 0) {
-                auto qMessage = QString::fromStdString(bytes.toStdString());
-                if (qMessage.contains("CLOSE")) {
-                    qDebug() << "Close called" << "\n";
-                    mainWindow->writeEvent("CLOSE");
+                auto message = bytes.toStdString();
+                auto it = message.find(CLOSE);
+                if (it != std::string::npos) {
+                    message.erase(it, CLOSE.length());
+                    mainWindow->writeToChat(message);
                     QMetaObject::invokeMethod(this, "disconnected", Qt::QueuedConnection);
-                } else if (qMessage.contains("Server:")) {
-                    mainWindow->writeToChat(qMessage.toStdString());
+                } else {
+                    mainWindow->writeToChat(message);
                 }
             }
         } else {
@@ -81,6 +82,10 @@ bool ClientManager::send(const QByteArray& data) {
     try {
         if (MainWindow::isDebug) {
             qDebug() << "Entering send\n";
+        }
+        if (200 < data.size()) {
+            writeEvent("Message is too large, more than 200 symbols\n");
+            return false;
         }
         socket->write(data);
         socket->flush();

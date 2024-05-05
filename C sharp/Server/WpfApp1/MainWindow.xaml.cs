@@ -118,7 +118,8 @@ namespace WpfApp1
                 }
             }
             public void dumpMessages(int n) {
-                var someMessages = DataContext.Take(n).ToArray();
+                int skipAmount = new Random().Next(0, this.db.Set<Message>().Count());
+                var someMessages = DataContext.Skip(skipAmount).Take(n).ToArray();
                 n = Math.Min(n - 1, someMessages.Length - 1);
                 while (0 <= n)
                 {

@@ -74,6 +74,7 @@ class Server
                         }
                         catch (SocketException e)
                         {
+                            Trace.WriteLine("44444SocketException:");
                             try
                             {
                                 tcpListener.Stop();
@@ -82,7 +83,6 @@ class Server
                             catch (SocketException eListener) {
                                 Trace.WriteLine("SocketException: {0}", eListener.ToString());
                             }
-                            //Trace.WriteLine("SocketException: {0}", e.ToString());
                         }
                     });
 
@@ -115,7 +115,7 @@ class Server
         }
         catch (SocketException e)
         {
-            //Trace.WriteLine("SocketException: {0}", e.ToString());
+            Trace.WriteLine("111SocketException: {0}", e.ToString());
         }
         finally
         {
@@ -140,7 +140,7 @@ class Server
         }
         TcpClient client = (TcpClient)obj;
         var stream = client.GetStream();
-        Byte[] bytes = new Byte[256];
+        Byte[] bytes = new Byte[200];
         int i;
         try
         {
@@ -151,7 +151,7 @@ class Server
         }
         catch (Exception e)
         {
-            //Trace.WriteLine("Exception: {0}", e.ToString());
+            Trace.WriteLine("22222Exception: {0}", e.ToString());
         }
         finally
         {
@@ -177,6 +177,11 @@ class Server
     public bool sendMessage(string message)
     {
         if (connectedClient == null || !isServing) {
+            addServerEvent("No connection\n");
+            return false;
+        }
+        if (200 < message.Length) {
+            addServerEvent("Message is too large, more than 200 symbols\n");
             return false;
         }
         connectedClient.GetStream().Write(Encoding.Default.GetBytes(message));
