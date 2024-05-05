@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <iostream>
+#include <QHostAddress>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -18,8 +19,19 @@ void MainWindow::setClientManager(ClientManager* clientManager) {
 
 void MainWindow::on_pushButton_clicked() {
     auto ip = ui->textIP->text();
-    auto port = ui->textPort->text();
-    clientManager->connect(ip, port.toInt());
+    QHostAddress address(ip);
+    if (address.protocol() != QAbstractSocket::IPv4Protocol &&
+            address.protocol() != QAbstractSocket::IPv6Protocol) {
+        writeEvent("Wrong ip\n");
+        return;
+    }
+    bool success = false;
+    auto port = ui->textPort->text().toInt(&success);
+    if (!success) {
+        writeEvent("Wrong port\n");
+        return;
+    }
+    clientManager->connect(ip, port);
 }
 
 void MainWindow::on_pushButton_2_clicked() {

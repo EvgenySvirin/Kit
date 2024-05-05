@@ -24,6 +24,7 @@
         <Button x:Name="SendMessageButton" Content="Send" HorizontalAlignment="Left" Margin="573,341,0,0" Width="100" Height="29" VerticalAlignment="Top" Click="SendMessageButton_Click" RenderTransformOrigin="0.153,-3.217"/>
         <TextBox x:Name="DumpTextBox" HorizontalAlignment="Left" Margin="327,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="219" Height="138"/>
         <Button x:Name="DumpButton" Content="Dump from DB" HorizontalAlignment="Left" Margin="573,237,0,0" VerticalAlignment="Top" Width="100" Height="38" Click="DumpButton_Click"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="573,317,0,0" TextWrapping="Wrap" Text="use ASCII only" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
 </Window>

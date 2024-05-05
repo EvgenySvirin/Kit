@@ -2,16 +2,18 @@
 #include "mainwindow.h"
 #include <QDebug>
 #include <thread>
+#include <QTimer>
 
 class MainWindow;
 ClientManager::ClientManager(MainWindow* mainWindow) {
    this->mainWindow = mainWindow;
    isConnected = false;
    socket = nullptr;
+   recieverThread = new std::thread (&ClientManager::startRecieving, this);
+   recieverThread->detach();
 }
 
 void ClientManager::connect(const QString& ip, const int port) {
-
     if (socket) {
         disconnected();
     }
@@ -22,8 +24,24 @@ void ClientManager::connect(const QString& ip, const int port) {
     QObject::connect(socket, SIGNAL(error(QAbstractSocket::SocketError)), this,
                      SLOT(errorSocket(QAbstractSocket::SocketError)));
     socket->connectToHost(ip, port);
+    timer = new QTimer();
+    QObject::connect(timer, SIGNAL(timeout()), this, SLOT(checkIfConnected()));
+    timer->start(1000);
 }
 
+void ClientManager::checkIfConnected() {
+    timer->stop();
+    delete timer;
+    timer = nullptr;
+    if (!isConnected) {
+        if (socket) {
+            socket->close();
+            delete socket;
+            socket = nullptr;
+            writeEvent("No connection\n");
+        }
+    }
+}
 void ClientManager::disconnect() {
     disconnected();
 }
@@ -57,8 +75,9 @@ void ClientManager::errorSocket(QAbstractSocket::SocketError error) {
 }
 
 void ClientManager::startRecieving() {
-    while (true) {
-        std::string CLOSE = "CLOSE";
+    const std::string CLOSE = "CLOSE";
+    while (!programIsEnded) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(200));
         if (isConnected && socket) {
             auto bytes = socket->read(200);
             if (bytes.length() != 0) {
@@ -67,13 +86,13 @@ void ClientManager::startRecieving() {
                 if (it != std::string::npos) {
                     message.erase(it, CLOSE.length());
                     mainWindow->writeToChat(message);
-                    QMetaObject::invokeMethod(this, "disconnected", Qt::QueuedConnection);
+                    if (isConnected) {
+                        QMetaObject::invokeMethod(this, "disconnected", Qt::QueuedConnection);
+                    }
                 } else {
                     mainWindow->writeToChat(message);
                 }
             }
-        } else {
-            std::this_thread::sleep_for(std::chrono::milliseconds(200));
         }
     }
 }
@@ -102,3 +121,16 @@ void ClientManager::writeEvent(const QString &eventMessage) const {
     mainWindow->writeEvent(eventMessage);
 }
 
+ClientManager::~ClientManager() {
+    qDebug() << "called dest";
+    programIsEnded = true;
+    if (timer) {
+        delete timer;
+        timer = nullptr;
+    }
+    if (socket) {
+        socket->close();
+        delete socket;
+        socket = nullptr;
+    }
+}

@@ -23,6 +23,7 @@ using SQLiteApp;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.Collections.Immutable;
+using System.Text.RegularExpressions;
 
 namespace WpfApp1
 {
@@ -36,9 +37,15 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
+
+            EventsTextBox.IsReadOnly = true;
+            ChatTextBox.IsReadOnly = true;
+
             programManager = new ProgramManager(this);
             programManager.loadDB();
             programManager.startManageQueue();
+
+            
                 
             if (isDebug) {
                 Trace.WriteLine("MainWindow() ended");
@@ -117,7 +124,7 @@ namespace WpfApp1
                     Thread.Sleep(200);
                 }
             }
-            public void dumpMessages(int n) {
+            public void dumpRandomMessages(int n) {
                 int skipAmount = new Random().Next(0, this.db.Set<Message>().Count());
                 var someMessages = DataContext.Skip(skipAmount).Take(n).ToArray();
                 n = Math.Min(n - 1, someMessages.Length - 1);
@@ -200,7 +207,7 @@ namespace WpfApp1
 
         private void DumpButton_Click(object sender, RoutedEventArgs e)
         {
-            programManager.dumpMessages(5);
+            programManager.dumpRandomMessages(5);
         }
     }
 }

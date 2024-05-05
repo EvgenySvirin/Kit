@@ -57,13 +57,15 @@ class Server
         isServing = true;
         IPAddress localAddr = IPAddress.Parse(ip);
         tcpListener = new TcpListener(localAddr, port);
-        tcpListener.Start();
+        
         addServerEvent(String.Format("Server is starting on ip: {0}, port {1}\n", ip, port));
         try
         {
             addServerEvent("Waiting for a connection...\n");
+            
             while (isServing)
             {
+                tcpListener.Start();
                 TcpClient? client = null;
                 var task = Task.Factory.StartNew(
                     () =>
@@ -74,11 +76,9 @@ class Server
                         }
                         catch (SocketException e)
                         {
-                            Trace.WriteLine("44444SocketException:");
                             try
                             {
                                 tcpListener.Stop();
-                                tcpListener.Start();
                             }
                             catch (SocketException eListener) {
                                 Trace.WriteLine("SocketException: {0}", eListener.ToString());
@@ -91,14 +91,12 @@ class Server
                     isSuccessful = task.Wait(2000);
                 } catch (SocketException e) {
                     tcpListener.Stop();
-                    tcpListener.Start();
                     Thread.Sleep(300);
                     continue;
                 }
 
                 if (!isSuccessful) {
                     tcpListener.Stop();
-                    tcpListener.Start();
                     Thread.Sleep(300);
                     continue;
                 }
@@ -111,11 +109,12 @@ class Server
                     t.Start(parameter: client);
                     programManager.toggleClientStatus(true);              
                 }
+                tcpListener.Stop();
             }
         }
         catch (SocketException e)
         {
-            Trace.WriteLine("111SocketException: {0}", e.ToString());
+            //Trace.WriteLine("SocketException: {0}", e.ToString());
         }
         finally
         {
@@ -146,12 +145,12 @@ class Server
         {
             while (isServing && (i = stream.Read(bytes, 0, bytes.Length)) != 0)
             {
-                addChatEvent(Encoding.Default.GetString(bytes, 0, i));
+                addChatEvent(Encoding.ASCII.GetString(bytes, 0, i));
             }
         }
         catch (Exception e)
         {
-            Trace.WriteLine("22222Exception: {0}", e.ToString());
+            //Trace.WriteLine("Exception: {0}", e.ToString());
         }
         finally
         {
@@ -170,7 +169,7 @@ class Server
                 Trace.WriteLine("CLOSE SENT \n");
             }
 
-            client.GetStream().Write(Encoding.Default.GetBytes("CLOSE"));
+            client.GetStream().Write(Encoding.ASCII.GetBytes("CLOSE"));
         }
     } 
 
@@ -181,10 +180,10 @@ class Server
             return false;
         }
         if (200 < message.Length) {
-            addServerEvent("Message is too large, more than 200 symbols\n");
+            addServerEvent("Message is too large, more than 200 symbols");
             return false;
         }
-        connectedClient.GetStream().Write(Encoding.Default.GetBytes(message));
+        connectedClient.GetStream().Write(Encoding.ASCII.GetBytes(message));
         addChatEvent(message);
         return true;
     }
