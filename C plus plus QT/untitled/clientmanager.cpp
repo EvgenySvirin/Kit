@@ -67,26 +67,15 @@ void ClientManager::errorSocket(QAbstractSocket::SocketError error) {
 }
 
 void ClientManager::startRecieving() {
-    const std::string CLOSE = "CLOSE";
     while (!programIsEnded) {
         if (isConnected && socket && socket->isReadable()) {
             auto bytes = socket->read(200);
             if (bytes.length() != 0) {
-                auto message = bytes.toStdString();
-                auto it = message.find(CLOSE);
-                if (it != std::string::npos) {
-                    message.erase(it, CLOSE.length());
-                    mainWindow->writeToChat(message);
-                    if (isConnected) {
-                        QMetaObject::invokeMethod(this, "disconnected", Qt::QueuedConnection);
-                    }
-                } else {
-                    mainWindow->writeToChat(message);
+                mainWindow->writeToChat(bytes.toStdString());
                 }
             }
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(200));
-    }
 }
 
 bool ClientManager::send(const QByteArray& data) {

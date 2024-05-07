@@ -108,13 +108,16 @@ class Server
         }
         finally
         {
-            sendClose(connectedClient);
             if (isDebug)
             {
                 Trace.WriteLine("Server loop ended\n");
             }
             addServerEvent("Server stopped\n");
             tcpListener.Stop();
+            if (connectedClient != null)
+            {
+                connectedClient.Close();
+            }
             connectedClient = null;
             isServing = false;
             canRestart = true;
@@ -144,24 +147,11 @@ class Server
         }
         finally
         {
-            sendClose(client);
             client.Close();
             addServerEvent("Client disconnected\n");
             programManager.toggleClientStatus(false);
         }
     }
-
-    public void sendClose(TcpClient client) {
-        if (client != null && client.Connected)
-        {
-            if (isDebug)
-            {
-                Trace.WriteLine("CLOSE SENT\n");
-            }
-
-            client.GetStream().Write(Encoding.ASCII.GetBytes("CLOSE"));
-        }
-    } 
 
     public bool sendMessage(string message)
     {
